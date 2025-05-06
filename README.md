@@ -1,70 +1,153 @@
-# Getting Started with Create React App
+# 🤢 Loan Calculator App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern and responsive Loan EMI Calculator with real-time currency exchange rates, built using **React.js**, **Material UI**, and **Context API**, and deployed on **Vercel**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🔗 Project Links
 
-### `npm start`
+* **Live Demo**: [Loan Calculator App](https://loan-calculator-naga-sri-venkat-rs-projects.vercel.app/)
+* **GitHub Repository**: [GitHub - Loan Calculator](https://github.com/NagaSriVenkatR/Loan-Calculator)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Folder Structure
 
-### `npm test`
+```
+src/
+│
+├── components/
+│   ├── Navbar.js             # Navigation bar with responsive menu and dark mode toggle
+│   ├── emiCalculatorForm.js  # EMI form input and result display
+│   └── exchangeRate.js       # Component for displaying exchange rates
+│
+├── context/
+│   ├── AppContext.js         # Manages global dark/light mode
+│   └── currencyContext.js    # Manages currency state
+│
+├── pages/
+│   ├── home.js               # Main EMI Calculator page
+│   ├── about.js              # Exchange Rates page
+│   └── errorPage.js          # Custom 404 Not Found page
+│
+├── theme/
+│   └── theme.js              # Material UI theme customization (light/dark)
+│
+├── utils/
+│   ├── calculateEMI.js       # Function to compute EMI
+│   └── fetchExchangeRates.js # Function to fetch currency data
+│
+├── App.css                   # General app styling
+├── App.js                    # Route and layout management
+├── App.test.js               # Basic test setup
+├── index.css                 # Base CSS styles
+└── index.js                  # Entry point with context/theme providers
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🤩 Key Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 📊 EMI Calculator
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Inputs: Loan Amount, Interest Rate (%), Tenure (Years)
+* Output: Monthly EMI calculated using:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  $$
+  EMI = \frac{P \cdot R \cdot (1 + R)^N}{(1 + R)^N - 1}
+  $$
+* Real-time update on input
+* Clean UI with Material UI components
 
-### `npm run eject`
+### 🌍 Currency Exchange
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Uses public [ExchangeRate-API](https://www.exchangerate-api.com/)
+* View conversion rates between multiple currencies
+* Dynamic updates with fetch-based custom hook
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🌙 Theme Toggle
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Dark and light mode using MUI's `ThemeProvider`
+* Managed by global `AppContext`
+* Toggle available in both Navbar and Drawer
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 📱 Fully Responsive Design
 
-## Learn More
+* Mobile: Drawer + Hamburger menu
+* Tablet/Desktop: Horizontal menu with buttons
+* Built using MUI breakpoints (`xs`, `sm`, `md`)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ⚡ Error Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Route: `*` for any undefined paths
+* Renders `ErrorPage.js` with a 404-friendly message
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🧠 State Management
 
-### Analyzing the Bundle Size
+### Global Theme State
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```js
+// context/AppContext.js
+export const AppContext = createContext();
+```
 
-### Making a Progressive Web App
+### Currency State
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```js
+// context/currencyContext.js
+export const CurrencyContext = createContext();
+```
 
-### Advanced Configuration
+### Providers in index.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```jsx
+<CurrencyProvider>
+  <AppProvider>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </AppProvider>
+</CurrencyProvider>
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧪 Testing (Optional)
 
-### `npm run build` fails to minify
+Basic test scaffolding is included with `App.test.js`. For more:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* Use **Jest** and **React Testing Library**
+* Add unit tests for EMI calculation logic
+* Mock API requests for currency rates
+
+---
+
+## 🚀 Deployment (Vercel)
+
+### Steps:
+
+1. Push project to GitHub
+2. Go to [vercel.com](https://vercel.com/)
+3. Connect your GitHub repo
+4. Choose the `Loan-Calculator` repo
+5. Click **Deploy**
+
+---
+
+## 📄 Future Enhancements
+
+* 🗞 PDF download of EMI schedule
+* 📊 Chart visualizations of loan amortization
+* 👤 User login + history
+* ⚖ Add tests for form validation and API logic
+
+---
+
+## 👨‍💼 Author
+
+**Naga Sri Venkat R**
+
+* GitHub: [NagaSriVenkatR](https://github.com/NagaSriVenkatR)
+* Portfolio: [rnsvenkat-portfollio.web.app](https://rnsvenkat-portfollio.web.app)
