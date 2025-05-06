@@ -15,7 +15,6 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useAppContext } from "../context/AppContext";
-import { blue } from "@mui/material/colors";
 
 const Navbar = () => {
   const { darkMode, setDarkMode } = useAppContext();
@@ -30,7 +29,7 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { label: "EMICalculator", path: "/emicalculator" },
+    { label: "EMICalculator", path: "/" },
     { label: "Exchangerates", path: "/exchange-rate" },
   ];
 
@@ -52,12 +51,13 @@ const Navbar = () => {
                 color="inherit"
                 sx={{
                   "&.active": {
-                    backgroundColor: darkMode ? "#444" : "#ddd",
-                    color: darkMode ? "#fff" : "#000",
+                    backgroundColor: "#1976d2",
+                    color: "#fff",
                   },
                   "&:hover": {
-                    backgroundColor: darkMode ? "#555" : "#eee",
+                    backgroundColor: "#1565c0",
                   },
+                  textTransform: "none",
                 }}
               >
                 {item.label}

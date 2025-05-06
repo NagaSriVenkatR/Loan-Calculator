@@ -23,7 +23,7 @@ const App = () => {
         <Navbar />
         <Toolbar /> {/* Push content below fixed AppBar */}
         <Routes>
-          <Route path="/emicalculator" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/exchange-rate" element={<About />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
